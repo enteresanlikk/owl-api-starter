@@ -8,7 +8,7 @@ const validationUtil = require('../utils/validation.util');
 
 router.get('/', userCtrl.getAll);
 router.post('/', userValidation.create(), validationUtil.validate, userCtrl.create);
-router.put('/', userValidation.update(), validationUtil.validate, userCtrl.update);
+router.put('/:id', userValidation.update(), validationUtil.validate, userCtrl.update);
 router.delete('/:id', userCtrl.delete);
 router.get('/:id', userCtrl.get);
 

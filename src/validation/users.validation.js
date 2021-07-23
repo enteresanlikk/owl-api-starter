@@ -12,8 +12,6 @@ module.exports = {
     },
     update: () => {
         return [
-            check('id').not().isEmpty().withMessage(validation.required),
-
             check('name').not().isEmpty().withMessage(validation.required),
             check('surname').not().isEmpty().withMessage(validation.required)
         ]

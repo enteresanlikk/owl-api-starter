@@ -49,9 +49,8 @@ module.exports = {
         return res.json(new ErrorResult(messages.user.errorAdded));
     },
     update: async (req, res) => {
+        const { id } = req.params;
         const {
-            id,
-
             name,
             surname
         } = req.body;
