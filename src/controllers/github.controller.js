@@ -13,6 +13,6 @@ module.exports = {
         if (user) {
             return res.json(new SuccessDataResult(user, messages.user.found));
         }
-        return res.json(new ErrorResult(messages.user.notFound));
+        return res.status(404).json(new ErrorResult(messages.user.notFound));
     }
 };

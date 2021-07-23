@@ -13,7 +13,7 @@ module.exports = {
         if(users && users.length > 0) {
             return res.json(new SuccessDataResult(users, messages.users.found));
         }
-        return res.json(new ErrorResult(messages.users.notFound));
+        return res.status(404).json(new ErrorResult(messages.users.notFound));
     },
     get: async (req, res) => {
         const { id } = req.params;
@@ -21,7 +21,7 @@ module.exports = {
         if (user) {
             return res.json(new SuccessDataResult(user, messages.user.found));
         }
-        return res.json(new ErrorResult(messages.user.notFound));
+        return res.status(404).json(new ErrorResult(messages.user.notFound));
     },
     create: async (req, res) => {
         const {
@@ -59,7 +59,7 @@ module.exports = {
         const user = await userService.getById(id);
 
         if(!user) {
-            return res.json(new ErrorResult(messages.user.notFound));
+            return res.status(404).json(new ErrorResult(messages.user.notFound));
         }
 
         const newUser = await userService.update(id, {
@@ -79,7 +79,7 @@ module.exports = {
         const user = await userService.getById(id);
 
         if(!user) {
-            return res.json(new ErrorResult(messages.user.notFound));
+            return res.status(404).json(new ErrorResult(messages.user.notFound));
         }
 
         const userDeleted = await userService.deleteById(id);

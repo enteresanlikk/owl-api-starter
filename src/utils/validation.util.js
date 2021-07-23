@@ -12,5 +12,5 @@ module.exports.validate = (req, res, next) => {
     const extractedErrors = [];
     errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }));
 
-    return res.json(new ValidationErrorResult(extractedErrors, messages.validation.error));
+    return res.status(400).json(new ValidationErrorResult(extractedErrors, messages.validation.error));
 };
