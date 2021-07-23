@@ -23,9 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', cors(), routes);
 
 app.use(function(req, res, next) {
-    res.status(404);
-
-    res.json(new ErrorResult(messages.notFound));
+    res.status(404).json(new ErrorResult(messages.notFound));
 });
 
 app.listen(PORT, async () => {
