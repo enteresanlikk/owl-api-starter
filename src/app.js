@@ -26,9 +26,10 @@ app.use(function(req, res, next) {
     res.status(404).json(new ErrorResult(messages.notFound));
 });
 
-app.listen(PORT, async () => {
+const port = PORT || 3030;
+app.listen(port, async () => {
     if(MONGO_URI) {
         await mongodb.connect(MONGO_URI);
     }
-    console.log(`App listening on port ${PORT}`);
+    console.log(`App listening on port ${port}`);
 });
