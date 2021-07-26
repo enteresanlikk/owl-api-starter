@@ -1,13 +1,10 @@
 'use strict';
-const githubService = require('../services/github.service');
-const {
-    SuccessDataResult,
-    ErrorResult
-} = require('../utils/results');
-const messages = require('../constants/messages.constant');
+import githubService from '../services/github.service';
+import { SuccessDataResult, ErrorResult } from '../utils/results';
+import messages from '../constants/messages.constant';
 
-module.exports = {
-    get: async (req, res) => {
+export default {
+    async get(req, res) {
         const { username } = req.params;
         const user = await githubService.getProfile(username);
         if (user) {
@@ -15,4 +12,4 @@ module.exports = {
         }
         return res.status(404).json(new ErrorResult(messages.user.notFound));
     }
-};
+}

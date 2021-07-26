@@ -1,8 +1,8 @@
 'use strict';
-const { githubInstance } = require('../utils/axios.util');
+import { githubInstance } from '../utils/axios.util';
 
-module.exports = {
-    getProfile: async (username) => {
+export default {
+    async getProfile(username) {
         const {data} = await githubInstance.get(`/users/${username}`);
 
         if(data && !data.message) {

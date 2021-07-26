@@ -1,10 +1,10 @@
 'use strict';
-const Result = require('./Result');
+import Result from './Result';
 
-const errorResult = class ErrorResult extends Result {
+class ErrorResult extends Result {
     constructor(message) {
         super(false, message);
     }
-};
+}
 
-module.exports = errorResult;
+export default ErrorResult;

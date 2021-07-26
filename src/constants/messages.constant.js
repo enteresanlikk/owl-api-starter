@@ -1,5 +1,5 @@
 'use strict';
-module.exports = {
+export default {
     globalError: 'Bir hata oluştu.',
     notFound: 'NOT_FOUND',
     user: {
@@ -22,6 +22,6 @@ module.exports = {
     },
     validation: {
         error: 'VALIDATION_ERROR',
-        required: 'THIS_FIELD_IS_REQUIRED'
+        required: 'IS_REQUIRED'
     }
 };

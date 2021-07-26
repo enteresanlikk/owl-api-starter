@@ -1,17 +1,17 @@
 'use strict';
-const User = require('../models/user.model');
+import User from '../models/user.model';
 
-module.exports = {
-    getAll: async () => {
+export default {
+    async getAll() {
         return await User.find();
     },
-    getById: async (id) => {
+    async getById(id) {
         return await User.findById(id);
     },
-    getByUsername: async (username) => {
+    async getByUsername(username) {
         return await User.findOne({ username });
     },
-    create: async ({ name, surname, username }) => {
+    async create({ name, surname, username }) {
         const user = new User({
             name,
             surname,
@@ -21,14 +21,14 @@ module.exports = {
 
         return await user.save();
     },
-    update: async (id, { name, surname }) => {
+    async update(id, { name, surname }) {
         return await User.findByIdAndUpdate(id, {
             name,
             surname,
             updatedAt: Date.now()
         }, { new: true });
     },
-    deleteById: async (id) => {
+    async deleteById(id) {
         return await User.findByIdAndDelete(id);
     }
 };

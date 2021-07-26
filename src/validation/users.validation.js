@@ -1,19 +1,19 @@
 'use strict';
-const { check } = require('express-validator');
-const { validation } = require('../constants/messages.constant');
+import { check } from 'express-validator';
+import messages  from '../constants/messages.constant';
 
-module.exports = {
-    create: () => {
+export default {
+    create() {
         return [
-            check('name').not().isEmpty().withMessage(validation.required),
-            check('surname').not().isEmpty().withMessage(validation.required),
-            check('username').not().isEmpty().withMessage(validation.required)
+            check('name').not().isEmpty().withMessage(messages.validation.required),
+            check('surname').not().isEmpty().withMessage(messages.validation.required),
+            check('username').not().isEmpty().withMessage(messages.validation.required)
         ]
     },
-    update: () => {
+    update() {
         return [
-            check('name').not().isEmpty().withMessage(validation.required),
-            check('surname').not().isEmpty().withMessage(validation.required)
+            check('name').not().isEmpty().withMessage(messages.validation.required),
+            check('surname').not().isEmpty().withMessage(messages.validation.required)
         ]
     }
 };

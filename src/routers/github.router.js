@@ -1,9 +1,8 @@
 'use strict';
-const express = require('express');
+import express from 'express';
+import githubCtrl from '../controllers/github.controller';
 const router = express.Router();
-
-const githubCtrl = require('../controllers/github.controller');
 
 router.get('/:username', githubCtrl.get);
 
-module.exports = router;
+export default router;

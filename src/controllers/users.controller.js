@@ -1,21 +1,17 @@
 'use strict';
-const userService = require('../services/user.service');
-const {
-    SuccessDataResult,
-    SuccessResult,
-    ErrorResult
-} = require('../utils/results');
-const messages = require('../constants/messages.constant');
+import userService from '../services/user.service';
+import { SuccessDataResult, SuccessResult, ErrorResult } from '../utils/results';
+import messages from '../constants/messages.constant';
 
-module.exports = {
-    getAll: async (req, res) => {
+export default {
+    async getAll(req, res) {
         const users = await userService.getAll();
         if(users && users.length > 0) {
             return res.json(new SuccessDataResult(users, messages.users.found));
         }
         return res.status(404).json(new ErrorResult(messages.users.notFound));
     },
-    get: async (req, res) => {
+    async get(req, res) {
         const { id } = req.params;
         const user = await userService.getById(id);
         if (user) {
@@ -23,7 +19,7 @@ module.exports = {
         }
         return res.status(404).json(new ErrorResult(messages.user.notFound));
     },
-    create: async (req, res) => {
+    async create (req, res) {
         const {
             name,
             surname,
@@ -48,7 +44,7 @@ module.exports = {
 
         return res.json(new ErrorResult(messages.user.errorAdded));
     },
-    update: async (req, res) => {
+    async update(req, res) {
         const { id } = req.params;
         const {
             name,
@@ -72,7 +68,7 @@ module.exports = {
 
         return res.json(new ErrorResult(messages.user.errorUpdated));
     },
-    delete: async (req, res) => {
+    async delete(req, res) {
         const { id } = req.params;
 
         const user = await userService.getById(id);
@@ -89,4 +85,4 @@ module.exports = {
 
         return res.json(new ErrorResult(messages.user.errorDeleted));
     }
-};
+}

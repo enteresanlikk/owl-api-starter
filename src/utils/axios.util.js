@@ -1,7 +1,4 @@
 'use strict';
-const axios = require('axios');
+import axios from 'axios';
 
-module.exports.githubInstance = axios.create({
-    baseURL: 'https://api.github.com',
-    validateStatus: false
-});
+export const githubInstance = axios.create({ baseURL: 'https://api.github.com', validateStatus: false });

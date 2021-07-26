@@ -1,20 +1,21 @@
 {
   "name": "owl-api-starter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "start": "node ./src/app.js",
-    "dev": "nodemon ./src/app.js"
+    "start": "node -r esm ./src/app.js",
+    "dev": "nodemon -r esm ./src/app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Bilal Demir",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-validator": "^6.12.1",
     "helmet": "^4.6.0",

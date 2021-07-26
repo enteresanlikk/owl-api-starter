@@ -1,20 +1,21 @@
 'use strict';
-require('dotenv').config();
-const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+import dotenv from 'dotenv';
+dotenv.config();
+
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import routes from './routers';
+import mongodb from './databases/mongo.database';
+import { ErrorResult } from './utils/results';
+import messages from './constants/messages.constant';
 
 const {
     PORT,
     MONGO_URI
 } = process.env;
-
 const app = express();
-const routes = require('./routers');
-const mongodb = require('./databases/mongo.database');
-const { ErrorResult } = require('./utils/results');
-const messages = require('./constants/messages.constant');
 
 app.use(helmet());
 app.use(bodyParser.json());
@@ -22,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', cors(), routes);
 
-app.use(function(req, res, next) {
+app.use((req, res) => {
     res.status(404).json(new ErrorResult(messages.notFound));
 });
 

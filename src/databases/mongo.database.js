@@ -1,8 +1,8 @@
 'use strict';
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-module.exports = {
-    connect: async (mongoURI)=>{
+export default {
+    async connect(mongoURI) {
         await mongoose.connect(mongoURI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
