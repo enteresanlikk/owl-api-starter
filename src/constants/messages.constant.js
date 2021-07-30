@@ -23,5 +23,9 @@ export default {
     validation: {
         error: 'VALIDATION_ERROR',
         required: 'IS_REQUIRED'
+    },
+    youtube: {
+        videoFound: 'VIDEO_FOUND',
+        videoNotFound: 'VIDEO_NOT_FOUND'
     }
 };
