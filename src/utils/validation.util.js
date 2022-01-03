@@ -6,6 +6,7 @@ import messages from '../constants/messages.constant';
 export default {
     validate(req, res, next) {
         const errors = validationResult(req);
+        
         if (errors.isEmpty()) {
             return next();
         }

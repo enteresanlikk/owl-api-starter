@@ -3,6 +3,7 @@ import express from 'express';
 import userCtrl from '../controllers/users.controller';
 import userValidation from '../validation/users.validation';
 import validationUtil from '../utils/validation.util';
+
 const router = express.Router();
 
 router.get('/', userCtrl.getAll);

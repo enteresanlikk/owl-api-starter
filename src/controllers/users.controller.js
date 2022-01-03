@@ -6,20 +6,25 @@ import messages from '../constants/messages.constant';
 export default {
     async getAll(req, res) {
         const users = await userService.getAll();
+
         if(users && users.length > 0) {
             return res.json(new SuccessDataResult(users, messages.users.found));
         }
+
         return res.status(404).json(new ErrorResult(messages.users.notFound));
     },
     async get(req, res) {
         const { id } = req.params;
+
         const user = await userService.getById(id);
+
         if (user) {
             return res.json(new SuccessDataResult(user, messages.user.found));
         }
+
         return res.status(404).json(new ErrorResult(messages.user.notFound));
     },
-    async create (req, res) {
+    async create(req, res) {
         const {
             name,
             surname,
@@ -46,6 +51,7 @@ export default {
     },
     async update(req, res) {
         const { id } = req.params;
+        
         const {
             name,
             surname

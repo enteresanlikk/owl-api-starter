@@ -19,8 +19,9 @@ const Schema = new mongoose.Schema({
         type: Date
     },
     updatedAt: {
-        type: Date
+        type: Date,
+        default: null
     }
 });
 
-export default mongoose.model('users', Schema);
+export default mongoose.model('user', Schema);

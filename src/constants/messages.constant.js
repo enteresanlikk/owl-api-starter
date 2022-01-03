@@ -1,6 +1,6 @@
 'use strict';
 export default {
-    globalError: 'Bir hata oluştu.',
+    globalError: 'ERROR',
     notFound: 'NOT_FOUND',
     user: {
         found: 'USER_FOUND',
@@ -8,13 +8,13 @@ export default {
         alreadyAdded: 'USER_ALREADY_ADDED',
 
         successAdded: 'USER_SUCCESSFULLY_ADDED',
-        errorAdded: 'USER_ERROR_ADDED',
+        errorAdded: 'USER_ADDED_ERROR',
 
         successUpdated: 'USER_SUCCESSFULLY_UPDATED',
-        errorUpdated: 'USER_ERROR_UPDATED',
+        errorUpdated: 'USER_UPDATED_ERROR',
 
         successDeleted: 'USER_SUCCESSFULLY_DELETED',
-        errorDeleted: 'USER_ERROR_DELETED'
+        errorDeleted: 'USER_DELETED_ERROR'
     },
     users: {
         found: 'USERS_FOUND',
