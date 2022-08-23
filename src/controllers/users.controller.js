@@ -34,7 +34,7 @@ export default {
         const user = await userService.getByUsername(username);
 
         if(user) {
-            return res.json(new ErrorResult(messages.user.alreadyAdded));
+            return res.status(400).json(new ErrorResult(messages.user.alreadyAdded));
         }
 
         const newUser = await userService.create({
@@ -44,10 +44,10 @@ export default {
         });
 
         if(newUser) {
-            return res.json(new SuccessDataResult(newUser, messages.user.successAdded));
+            return res.status(201).json(new SuccessDataResult(newUser, messages.user.successAdded));
         }
 
-        return res.json(new ErrorResult(messages.user.errorAdded));
+        return res.status(400).json(new ErrorResult(messages.user.errorAdded));
     },
     async update(req, res) {
         const { id } = req.params;
