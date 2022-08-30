@@ -1,15 +1,14 @@
 'use strict';
 import dotenv from 'dotenv';
-dotenv.config();
-
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import routers from './routers';
 import mongodb from './databases/mongo.database';
 import { ErrorResult } from './utils/results';
 import messages from './constants/messages.constant';
+
+dotenv.config();
 
 const {
     PORT,
@@ -18,8 +17,8 @@ const {
 const app = express();
 
 app.use(helmet());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', cors(), routers);
 
