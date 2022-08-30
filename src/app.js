@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import httpStatus from 'http-status';
+
 import routers from './routers';
 import mongodb from './databases/mongo.database';
 import { ErrorResult } from './utils/results';
@@ -23,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', cors(), routers);
 
 app.use((req, res) => {
-    res.status(404).json(new ErrorResult(messages.notFound));
+    res.status(httpStatus.NOT_FOUND).json(new ErrorResult(messages.notFound));
 });
 
 const port = PORT || 3030;

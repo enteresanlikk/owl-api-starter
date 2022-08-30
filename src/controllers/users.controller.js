@@ -1,4 +1,6 @@
 'use strict';
+import httpStatus from 'http-status';
+
 import userService from '../services/user.service';
 import { SuccessDataResult, SuccessResult, ErrorResult } from '../utils/results';
 import messages from '../constants/messages.constant';
@@ -8,10 +10,10 @@ export default {
         const users = await userService.getAll();
 
         if(users && users.length > 0) {
-            return res.json(new SuccessDataResult(users, messages.users.found));
+            return res.status(httpStatus.OK).json(new SuccessDataResult(users, messages.users.found));
         }
 
-        return res.status(404).json(new ErrorResult(messages.users.notFound));
+        return res.status(httpStatus.NOT_FOUND).json(new ErrorResult(messages.users.notFound));
     },
     async get(req, res) {
         const { id } = req.params;
@@ -19,10 +21,10 @@ export default {
         const user = await userService.getById(id);
 
         if (user) {
-            return res.json(new SuccessDataResult(user, messages.user.found));
+            return res.status(httpStatus.OK).json(new SuccessDataResult(user, messages.user.found));
         }
 
-        return res.status(404).json(new ErrorResult(messages.user.notFound));
+        return res.status(httpStatus.NOT_FOUND).json(new ErrorResult(messages.user.notFound));
     },
     async create(req, res) {
         const {
@@ -35,7 +37,7 @@ export default {
         const user = await userService.getByUsername(username);
 
         if(user) {
-            return res.status(400).json(new ErrorResult(messages.user.alreadyAdded));
+            return res.status(httpStatus.BAD_REQUEST).json(new ErrorResult(messages.user.alreadyAdded));
         }
 
         const newUser = await userService.create({
@@ -46,10 +48,10 @@ export default {
         });
 
         if(newUser) {
-            return res.status(201).json(new SuccessDataResult(newUser, messages.user.successAdded));
+            return res.status(httpStatus.CREATED).json(new SuccessDataResult(newUser, messages.user.successAdded));
         }
 
-        return res.status(400).json(new ErrorResult(messages.user.errorAdded));
+        return res.status(httpStatus.NOT_FOUND).json(new ErrorResult(messages.user.errorAdded));
     },
     async update(req, res) {
         const { id } = req.params;
@@ -63,7 +65,7 @@ export default {
         const user = await userService.getById(id);
 
         if(!user) {
-            return res.status(404).json(new ErrorResult(messages.user.notFound));
+            return res.status(httpStatus.NOT_FOUND).json(new ErrorResult(messages.user.notFound));
         }
 
         const newUser = await userService.update(id, {
@@ -73,10 +75,10 @@ export default {
         });
 
         if(newUser) {
-            return res.json(new SuccessDataResult(newUser, messages.user.successUpdated));
+            return res.status(httpStatus.OK).json(new SuccessDataResult(newUser, messages.user.successUpdated));
         }
 
-        return res.json(new ErrorResult(messages.user.errorUpdated));
+        return res.status(httpStatus.NOT_FOUND).json(new ErrorResult(messages.user.errorUpdated));
     },
     async delete(req, res) {
         const { id } = req.params;
@@ -84,15 +86,15 @@ export default {
         const user = await userService.getById(id);
 
         if(!user) {
-            return res.status(404).json(new ErrorResult(messages.user.notFound));
+            return res.status(httpStatus.NOT_FOUND).json(new ErrorResult(messages.user.notFound));
         }
 
         const userDeleted = await userService.deleteById(id);
 
         if(userDeleted) {
-            return res.json(new SuccessResult(messages.user.successDeleted));
+            return res.status(httpStatus.OK).json(new SuccessResult(messages.user.successDeleted));
         }
 
-        return res.json(new ErrorResult(messages.user.errorDeleted));
+        return res.status(httpStatus.NOT_FOUND).json(new ErrorResult(messages.user.errorDeleted));
     }
 }
