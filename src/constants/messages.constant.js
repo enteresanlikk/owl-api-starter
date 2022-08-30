@@ -27,5 +27,9 @@ export default {
     youtube: {
         videoFound: 'VIDEO_FOUND',
         videoNotFound: 'VIDEO_NOT_FOUND'
+    },
+    auth: {
+        unauthorized: 'UNAUTHORIZED',
+        forbidden: 'FORBIDDEN'
     }
 };

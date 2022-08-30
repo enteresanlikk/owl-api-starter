@@ -32,5 +32,5 @@ app.listen(port, async () => {
     if(MONGO_URI) {
         await mongodb.connect(MONGO_URI);
     }
-    console.log(`App listening on port ${port}`);
+    console.log(`App started at http://localhost:${port}`);
 });

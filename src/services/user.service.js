@@ -1,5 +1,6 @@
 'use strict';
 import User from '../models/user.model';
+import cryptoService from '../services/crypto.service';
 
 export default {
     async getAll() {
@@ -11,20 +12,31 @@ export default {
     async getByUsername(username) {
         return await User.findOne({ username });
     },
-    async create({ name, surname, username }) {
+    async getByUsernameAndPassword(username, password) {
+        const user = await User.findOne({ username });
+        if(!user) return null;
+
+        const isMatch = await cryptoService.compare(password, user.password);
+        if(!isMatch) return null;
+
+        return user;
+    },
+    async create({ name, surname, username, password }) {
         const user = new User({
+            username,
             name,
             surname,
-            username,
+            password,
             createdAt: Date.now()
         });
 
         return await user.save();
     },
-    async update(id, { name, surname }) {
+    async update(id, { name, surname, password }) {
         return await User.findByIdAndUpdate(id, {
             name,
             surname,
+            password,
             updatedAt: Date.now()
         }, { new: true });
     },

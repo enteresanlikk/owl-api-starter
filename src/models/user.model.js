@@ -1,7 +1,13 @@
 'use strict';
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import cryptoService from '../services/crypto.service';
 
-const Schema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        unique: true,
+        required: true
+    },
     name: {
         type: String,
         required: true
@@ -10,18 +16,21 @@ const Schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    username: {
+    password: {
         type: String,
-        unique: true,
         required: true
-    },
-    createdAt: {
-        type: Date
-    },
-    updatedAt: {
-        type: Date,
-        default: null
     }
+}, { versionKey: false, timestamps: true });
+
+userSchema.pre('save', async function(next) {
+    const user = this;
+
+    if(!user.isModified('password')) {
+        return next();
+    }
+
+    const password = await cryptoService.create(user.password);
+    user.password = password;
 });
 
-export default mongoose.model('user', Schema);
+export default mongoose.model('user', userSchema);

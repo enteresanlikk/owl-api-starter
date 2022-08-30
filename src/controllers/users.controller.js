@@ -28,7 +28,8 @@ export default {
         const {
             name,
             surname,
-            username
+            username,
+            password
         } = req.body;
 
         const user = await userService.getByUsername(username);
@@ -40,7 +41,8 @@ export default {
         const newUser = await userService.create({
             name,
             surname,
-            username
+            username,
+            password
         });
 
         if(newUser) {
@@ -54,7 +56,8 @@ export default {
         
         const {
             name,
-            surname
+            surname,
+            password
         } = req.body;
 
         const user = await userService.getById(id);
@@ -65,7 +68,8 @@ export default {
 
         const newUser = await userService.update(id, {
             name,
-            surname
+            surname,
+            password
         });
 
         if(newUser) {
