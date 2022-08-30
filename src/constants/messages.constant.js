@@ -1,6 +1,6 @@
 'use strict';
 export default {
-    globalError: 'ERROR',
+    globalError: 'INTERNAL_SERVER_ERROR',
     notFound: 'NOT_FOUND',
     user: {
         found: 'USER_FOUND',

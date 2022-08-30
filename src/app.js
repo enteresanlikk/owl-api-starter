@@ -9,8 +9,8 @@ dotenv.config();
 
 import routers from './routers';
 import mongodb from './databases/mongo.database';
-import { ErrorResult } from './utils/results';
-import messages from './constants/messages.constant';
+import errorMiddleware from './middlewares/error.middleware';
+import notFoundMiddleware from './middlewares/notFound.middleware';
 
 const {
     PORT,
@@ -25,9 +25,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', routers);
 
-app.use((req, res) => {
-    res.status(httpStatus.NOT_FOUND).json(new ErrorResult(messages.notFound));
-});
+app.use(errorMiddleware);
+app.use(notFoundMiddleware);
 
 const port = PORT || 3030;
 app.listen(port, async () => {

@@ -16,6 +16,6 @@ const validationMiddleware = (req, res, next) => {
     }));
 
     return res.status(httpStatus.BAD_REQUEST).json(new ValidationErrorResult(extractedErrors, messages.validation.error));
-}
+};
 
 export default validationMiddleware;
