@@ -5,12 +5,12 @@ import helmet from 'helmet';
 import cors from 'cors';
 import httpStatus from 'http-status';
 
+dotenv.config();
+
 import routers from './routers';
 import mongodb from './databases/mongo.database';
 import { ErrorResult } from './utils/results';
 import messages from './constants/messages.constant';
-
-dotenv.config();
 
 const {
     PORT,
@@ -19,10 +19,11 @@ const {
 const app = express();
 
 app.use(helmet());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api', cors(), routers);
+app.use('/api', routers);
 
 app.use((req, res) => {
     res.status(httpStatus.NOT_FOUND).json(new ErrorResult(messages.notFound));
@@ -35,3 +36,5 @@ app.listen(port, async () => {
     }
     console.log(`App started at http://localhost:${port}`);
 });
+
+export default app;

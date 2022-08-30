@@ -2,14 +2,14 @@
 import express from 'express';
 import userCtrl from '../controllers/users.controller';
 import userValidation from '../validations/users.validation';
-import validationUtil from '../utils/validation.util';
 import authMiddleware from '../middlewares/auth.middleware';
+import validationMiddleware from '../middlewares/validation.middleware';
 
 const router = express.Router();
 
 router.get('/', authMiddleware, userCtrl.getAll);
-router.post('/', authMiddleware, userValidation.create(), validationUtil.validate, userCtrl.create);
-router.put('/:id', authMiddleware, userValidation.update(), validationUtil.validate, userCtrl.update);
+router.post('/', authMiddleware, userValidation.create, validationMiddleware, userCtrl.create);
+router.put('/:id', authMiddleware, userValidation.update, validationMiddleware, userCtrl.update);
 router.delete('/:id', authMiddleware, userCtrl.delete);
 router.get('/:id', authMiddleware, userCtrl.get);
 
