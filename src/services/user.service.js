@@ -26,8 +26,7 @@ export default {
             username,
             name,
             surname,
-            password,
-            createdAt: Date.now()
+            password
         });
 
         return await user.save();
@@ -36,8 +35,7 @@ export default {
         return await User.findByIdAndUpdate(id, {
             name,
             surname,
-            password,
-            updatedAt: Date.now()
+            password
         }, { new: true });
     },
     async deleteById(id) {
