@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import httpStatus from 'http-status';
 
 dotenv.config();
 
